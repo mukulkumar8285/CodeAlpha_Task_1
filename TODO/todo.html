@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    #teskAdd li {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    #teskAdd li:hover {
+      background-color: #f9f9f9;
+    }
+
+    #teskAdd button {
+      background-color: red;
+      color: white;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    #teskAdd button:hover {
+      background-color: #c40000;
+    }
+  </style>
+</head>
+<body>
+    <div style="text-align: center;">
+  <input type="text" placeholder="Enter Your Task" id="InputTask" style="padding:10px; border-radius:10px;" />
+  <button onclick="AddTask()" style="border: none; background-color:red; padding:10px; border-radius:10px; color:white">Click To Add</button>
+  <ul id="teskAdd" ></ul>
+</div>
+  <script>
+    function AddTask() {
+      const InputTask = document.getElementById("InputTask").value;
+      console.log(InputTask);
+      const ul = document.getElementById("teskAdd");
+      const checklist = document.createElement("input");
+      checklist.type = "checkbox";
+
+      const li = document.createElement("li");
+      li.style.display = "flex";
+      li.style.justifyContent = "center";
+
+      li.appendChild(checklist);
+      const p = document.createElement("p");
+      p.innerHTML = InputTask;
+      
+      li.style.listStyle = "none";
+      
+      const button = document.createElement("button");
+      button.innerHTML = "Delete";
+      
+      
+      
+      
+      //p.appendChild(checklist);
+      p.appendChild(button);
+      li.appendChild(p);
+      ul.appendChild(li);
+      
+      checklist.addEventListener("click", function() {
+        checkfun(li, checklist);
+      });
+      
+      button.addEventListener("click", function() {
+        DeleteTask(ul, li);
+      });
+    }
+
+    function checkfun(li, checklist) {
+      if (checklist.checked) {
+        li.style.textDecoration = "line-through";
+      } else {
+        li.style.textDecoration = "none";
+      }
+    }
+
+    function DeleteTask(ul, li) {
+      ul.removeChild(li);
+      console.log("click");
+    }
+  </script>
+</body>
+</html>
